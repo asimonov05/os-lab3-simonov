@@ -1,0 +1,38 @@
+Лабораторная 3 — оценки и посещаемость через sed
+
+$ grep -H ';SimonovAR;' */tests/TEST-*
+Пересдачеведение/tests/TEST-1:Ae-21-23;SimonovAR;2026-01-26;5;5
+Пересдачеведение/tests/TEST-2:Ae-21-23;SimonovAR;2026-03-27;3;3
+Пересдачеведение/tests/TEST-3:Ae-21-23;SimonovAR;2026-03-02;3;3
+Пересдачеведение/tests/TEST-4:Ae-21-23;SimonovAR;2026-12-02;1;2
+Пересдачеведение/tests/TEST-4:Ae-21-23;SimonovAR;2026-11-10;2;2
+Пересдачеведение/tests/TEST-4:Ae-21-23;SimonovAR;2026-07-19;5;5
+Цирковое_Дело/tests/TEST-1:Ae-21-23;SimonovAR;2026-02-23;14;3+
+Цирковое_Дело/tests/TEST-2:Ae-21-23;SimonovAR;2026-04-30;15;3
+Цирковое_Дело/tests/TEST-3:Ae-21-23;SimonovAR;2026-03-01;23;5+
+Цирковое_Дело/tests/TEST-4:Ae-21-23;SimonovAR;2026-04-06;15;3
+
+$ sed -E -i '' '/^Ae-21-23;SimonovAR;[^;]+;[0-9]+;[34][-+]*$/s/;[34]([-+]*)$/;5\1/' */tests/TEST-*
+
+$ grep -H ';SimonovAR;' */tests/TEST-*
+Пересдачеведение/tests/TEST-1:Ae-21-23;SimonovAR;2026-01-26;5;5
+Пересдачеведение/tests/TEST-2:Ae-21-23;SimonovAR;2026-03-27;3;5
+Пересдачеведение/tests/TEST-3:Ae-21-23;SimonovAR;2026-03-02;3;5
+Пересдачеведение/tests/TEST-4:Ae-21-23;SimonovAR;2026-12-02;1;2
+Пересдачеведение/tests/TEST-4:Ae-21-23;SimonovAR;2026-11-10;2;2
+Пересдачеведение/tests/TEST-4:Ae-21-23;SimonovAR;2026-07-19;5;5
+Цирковое_Дело/tests/TEST-1:Ae-21-23;SimonovAR;2026-02-23;14;5+
+Цирковое_Дело/tests/TEST-2:Ae-21-23;SimonovAR;2026-04-30;15;5
+Цирковое_Дело/tests/TEST-3:Ae-21-23;SimonovAR;2026-03-01;23;5+
+Цирковое_Дело/tests/TEST-4:Ae-21-23;SimonovAR;2026-04-06;15;5
+
+$ grep -H '^SimonovAR ' */Ae-21-23-attendance
+Пересдачеведение/Ae-21-23-attendance:SimonovAR 111101110001101101
+Цирковое_Дело/Ae-21-23-attendance:SimonovAR 111100111011111101
+
+$ sed -i '' '/^SimonovAR /s/0/1/g' */Ae-21-23-attendance
+
+$ grep -H '^SimonovAR ' */Ae-21-23-attendance
+Пересдачеведение/Ae-21-23-attendance:SimonovAR 111111111111111111
+Цирковое_Дело/Ae-21-23-attendance:SimonovAR 111111111111111111
+
