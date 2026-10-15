@@ -310,5 +310,3 @@ ZhigulinKY,Ae-21,5
 ZhigulinKY,Ae-21,5
 ZhigulinKY,Ae-21,5
 ZhigulinKY,Ae-21,5++
-
-Всего оценок ровно 3 за 2024–2026 годы по всем тестам: 313
